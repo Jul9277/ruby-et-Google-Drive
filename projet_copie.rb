@@ -12,7 +12,7 @@ def get_the_email_of_a_townhal_from_its_webpage (page_url)
  emails =page.css("p.Style22")
  emails.each do |line|
 		if line.text.include?("@")
-        puts line.text
+        return line.text
     end
 end
  	
@@ -36,8 +36,11 @@ def get_all_the_urls_of_val_doise_townhalls (url)
     #renvoyer le tableau
 end
 
-
-url= "http://annuaire-des-mairies.com/val-d-oise.html"
-get_all_the_urls_of_val_doise_townhalls(url).each do |townhalls|
-get_the_email_of_a_townhal_from_its_webpage(townhalls)
+def additionner
+	additionner = {}
+	url= "http://annuaire-des-mairies.com/val-d-oise.html"
+	get_all_the_urls_of_val_doise_townhalls(url).each do |townhalls|
+		additionner[townhalls] = get_the_email_of_a_townhal_from_its_webpage(townhalls)
+	end
+	return additionner
 end
